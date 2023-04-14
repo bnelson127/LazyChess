@@ -37,8 +37,12 @@ public class Knight extends AbstractPiece {
 	@Override
 	protected boolean addLocationIfValid(int newX, int newY, ArrayList<Location> locations) {
 		if (this.isLocationOnBoard(newX, newY)) {
-			locations.add(new Location(newX, newY));
-			return true;
+			AbstractPiece pieceAtNewSpot = this.board.getPiece(newX, newY);
+			if (pieceAtNewSpot == null || pieceAtNewSpot.isEnemy != this.isEnemy) {
+				locations.add(new Location(newX, newY));
+				return true;
+			}
+			return false;
 		}
 		
 		return false;

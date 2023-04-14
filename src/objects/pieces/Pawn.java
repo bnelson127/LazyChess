@@ -22,9 +22,10 @@ public class Pawn extends AbstractPiece {
 	public ArrayList<Location> getPossibleMoveLocations() {
 		ArrayList<Location> locations = new ArrayList<Location>();
 		
-		this.addLocationIfValid(this.x, this.y - 1, locations);
-		this.addLocationIfValid(this.x + 1, this.y - 1, locations);
-		this.addLocationIfValid(this.x - 1, this.y - 1, locations);
+		int newY = this.isEnemy ? this.y + 1 : this.y - 1;
+		this.addLocationIfValid(this.x, newY, locations);
+		this.addLocationIfValid(this.x + 1, newY, locations);
+		this.addLocationIfValid(this.x - 1, newY, locations);
 		
 		return locations;
 	}
@@ -41,7 +42,7 @@ public class Pawn extends AbstractPiece {
 				return false;
 			}
 			else {
-				if (pieceAtNewSpot != null) {
+				if (pieceAtNewSpot != null && pieceAtNewSpot.isEnemy != this.isEnemy) {
 					locations.add(new Location(newX, newY));
 					return true;
 				}
