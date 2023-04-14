@@ -1,22 +1,16 @@
 package constants;
 
-public enum PieceTypes {
-	ENEMY_BISHOP("b"),
-	ENEMY_KING("k"),
-	ENEMY_KNIGHT("n"),
-	ENEMY_PAWN("p"),
-	ENEMY_QUEEN("q"),
-	ENEMY_ROOK("r"),
-	FRIENDLY_BISHOP("B"),
-	FRIENDLY_KING("K"),
-	FRIENDLY_KNIGHT("N"),
-	FRIENDLY_PAWN("P"),
-	FRIENDLY_QUEEN("Q"),
-	FRIENDLY_ROOK("R");
-	
-	public final String letter;
-
-    private PieceTypes(String letter) {
-        this.letter = letter;
-    }
+public class PieceTypes {
+	public static final char ENEMY_BISHOP = 'b';
+	public static final char ENEMY_KING = 'k';
+	public static final char ENEMY_KNIGHT = 'n';
+	public static final char ENEMY_PAWN = 'p';
+	public static final char ENEMY_QUEEN = 'q';
+	public static final char ENEMY_ROOK = 'r';
+	public static final char FRIENDLY_BISHOP = 'B';
+	public static final char FRIENDLY_KING = 'K';
+	public static final char FRIENDLY_KNIGHT = 'N';
+	public static final char FRIENDLY_PAWN = 'P';
+	public static final char FRIENDLY_QUEEN = 'Q';
+	public static final char FRIENDLY_ROOK = 'R';
 }
