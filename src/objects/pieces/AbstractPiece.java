@@ -1,5 +1,9 @@
 package objects.pieces;
 
+import java.util.ArrayList;
+
+import objects.Move;
+
 public abstract class AbstractPiece {
 	
 	protected int x = 0;
@@ -28,5 +32,5 @@ public abstract class AbstractPiece {
 		return this.isEnemy;
 	}
 	
-	abstract public int getPossibleMoves();
+	abstract public ArrayList<Move> getPossibleMoves();
 }

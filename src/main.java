@@ -1,3 +1,4 @@
+import objects.Board;
 
 public class main {
 
@@ -21,6 +22,7 @@ public class main {
 				+ "|R|N|B|Q|K|B|N|R|\n"
 				+ "+-+-+-+-+-+-+-+-+\n";
 		System.out.println(stringBoard);
+		Board board = new Board(stringBoard);
 	}
 
 }

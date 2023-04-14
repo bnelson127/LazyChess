@@ -1,5 +1,9 @@
 package objects.pieces;
 
+import java.util.ArrayList;
+
+import objects.Move;
+
 public class Pawn extends AbstractPiece {
 
 	public Pawn(int x, int y, boolean isEnemy) {
@@ -7,9 +11,9 @@ public class Pawn extends AbstractPiece {
 	}
 	
 	@Override
-	public int getPossibleMoves() {
+	public ArrayList<Move> getPossibleMoves() {
 		// TODO Auto-generated method stub
-		return 0;
+		return null;
 	}
 
 }

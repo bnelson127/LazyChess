@@ -1,5 +1,9 @@
 package objects.pieces;
 
+import java.util.ArrayList;
+
+import objects.Move;
+
 public class King extends AbstractPiece {
 
 	public King(int x, int y, boolean isEnemy) {
@@ -7,9 +11,9 @@ public class King extends AbstractPiece {
 	}
 	
 	@Override
-	public int getPossibleMoves() {
+	public ArrayList<Move> getPossibleMoves() {
 		// TODO Auto-generated method stub
-		return 0;
+		return null;
 	}
 
 }
