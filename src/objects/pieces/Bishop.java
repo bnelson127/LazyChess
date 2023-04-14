@@ -1,8 +1,8 @@
-package pieces;
+package objects.pieces;
 
-public class Pawn extends AbstractPiece {
+public class Bishop extends AbstractPiece {
 
-	public Pawn(int x, int y, boolean isEnemy) {
+	public Bishop(int x, int y, boolean isEnemy) {
 		super(x, y, isEnemy);
 	}
 	

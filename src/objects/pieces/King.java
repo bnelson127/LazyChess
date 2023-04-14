@@ -1,8 +1,8 @@
-package pieces;
+package objects.pieces;
 
-public class Queen extends AbstractPiece {
+public class King extends AbstractPiece {
 
-	public Queen(int x, int y, boolean isEnemy) {
+	public King(int x, int y, boolean isEnemy) {
 		super(x, y, isEnemy);
 	}
 	

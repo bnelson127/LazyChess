@@ -1,10 +1,12 @@
-import pieces.AbstractPiece;
-import pieces.Bishop;
-import pieces.King;
-import pieces.Knight;
-import pieces.Pawn;
-import pieces.Queen;
-import pieces.Rook;
+package objects;
+
+import objects.pieces.AbstractPiece;
+import objects.pieces.Bishop;
+import objects.pieces.King;
+import objects.pieces.Knight;
+import objects.pieces.Pawn;
+import objects.pieces.Queen;
+import objects.pieces.Rook;
 import constants.PieceTypes;
 
 public class Board {
@@ -60,5 +62,12 @@ public class Board {
 				this.board[i * 8 + j] = currentPiece;
 			}
 		}
+	}
+	
+	public AbstractPiece getPiece(int x, int y) {
+		if (x < 0 || x > 7 || y < 0 || y > 7) {
+			return null;
+		}
+		return this.board[y * 8 + x];
 	}
 }
