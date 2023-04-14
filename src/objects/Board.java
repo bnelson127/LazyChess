@@ -20,40 +20,40 @@ public class Board {
 				AbstractPiece currentPiece;
 				switch (pieceAtIndex) {
 					case PieceTypes.ENEMY_BISHOP:
-						currentPiece = new Bishop(j, i, true);
+						currentPiece = new Bishop(j, i, true, this);
 						break;
 					case PieceTypes.ENEMY_KING:
-						currentPiece = new King(j, i, true);
+						currentPiece = new King(j, i, true, this);
 						break;
 					case PieceTypes.ENEMY_KNIGHT:
-						currentPiece = new Knight(j, i, true);
+						currentPiece = new Knight(j, i, true, this);
 						break;
 					case PieceTypes.ENEMY_PAWN:
-						currentPiece = new Pawn(j, i, true);
+						currentPiece = new Pawn(j, i, true, this);
 						break;
 					case PieceTypes.ENEMY_QUEEN:
-						currentPiece = new Queen(j, i, true);
+						currentPiece = new Queen(j, i, true, this);
 						break;
 					case PieceTypes.ENEMY_ROOK:
-						currentPiece = new Rook(j, i, true);
+						currentPiece = new Rook(j, i, true, this);
 						break;
 					case PieceTypes.FRIENDLY_BISHOP:
-						currentPiece = new Bishop(j, i, false);
+						currentPiece = new Bishop(j, i, false, this);
 						break;
 					case PieceTypes.FRIENDLY_KING:
-						currentPiece = new King(j, i, false);
+						currentPiece = new King(j, i, false, this);
 						break;
 					case PieceTypes.FRIENDLY_KNIGHT:
-						currentPiece = new Knight(j, i, false);
+						currentPiece = new Knight(j, i, false, this);
 						break;
 					case PieceTypes.FRIENDLY_PAWN:
-						currentPiece = new Pawn(j, i, false);
+						currentPiece = new Pawn(j, i, false, this);
 						break;
 					case PieceTypes.FRIENDLY_QUEEN:
-						currentPiece = new Queen(j, i, false);
+						currentPiece = new Queen(j, i, false, this);
 						break;
 					case PieceTypes.FRIENDLY_ROOK:
-						currentPiece = new Rook(j, i, false);
+						currentPiece = new Rook(j, i, false, this);
 						break;
 					default:
 						currentPiece = null;
