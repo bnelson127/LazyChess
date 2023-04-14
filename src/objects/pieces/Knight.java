@@ -3,6 +3,7 @@ package objects.pieces;
 import java.util.ArrayList;
 
 import objects.Board;
+import objects.Location;
 import objects.Move;
 
 public class Knight extends AbstractPiece {
@@ -15,6 +16,32 @@ public class Knight extends AbstractPiece {
 	public ArrayList<Move> getPossibleMoves() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+	
+	@Override
+	public ArrayList<Location> getPossibleMoveLocations() {
+		ArrayList<Location> locations = new ArrayList<Location>();
+		
+		this.addLocationIfValid(this.x + 1, this.y + 2, locations);
+		this.addLocationIfValid(this.x - 1, this.y + 2, locations);
+		this.addLocationIfValid(this.x + 2, this.y + 1, locations);
+		this.addLocationIfValid(this.x + 2, this.y - 1, locations);
+		this.addLocationIfValid(this.x - 2, this.y + 1, locations);
+		this.addLocationIfValid(this.x - 2, this.y - 1, locations);
+		this.addLocationIfValid(this.x + 1, this.y - 2, locations);
+		this.addLocationIfValid(this.x - 1, this.y - 2, locations);
+		
+		return locations;
+	}
+	
+	@Override
+	protected boolean addLocationIfValid(int newX, int newY, ArrayList<Location> locations) {
+		if (this.isLocationOnBoard(newX, newY)) {
+			locations.add(new Location(newX, newY));
+			return true;
+		}
+		
+		return false;
 	}
 
 }
