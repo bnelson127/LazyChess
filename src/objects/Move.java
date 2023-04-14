@@ -1,36 +1,25 @@
 package objects;
 
 public class Move {
-	private int startX;
-	private int startY;
-	private int endX;
+	private Location startLocation;
+	private Location endLocation;
 	private int endY;
 	private int piecesMadeVulnerable;
 	private boolean kingMadeVulnerable;
 	
-	public Move(int startX, int startY, int endX, int endY, int piecesMadeVulnerable, boolean kingMadeVulnerable) {
-		this.startX = startX;
-		this.startY = startY;
-		this.endX = endX;
-		this.endY = endY;
+	public Move(Location startLocation, Location endLocation, int piecesMadeVulnerable, boolean kingMadeVulnerable) {
+		this.startLocation = startLocation;
+		this.endLocation = endLocation;
 		this.piecesMadeVulnerable = piecesMadeVulnerable;
 		this.kingMadeVulnerable = kingMadeVulnerable;
 	}
 	
-	public int getStartX() {
-		return this.startX;
+	public Location getStartLocation() {
+		return this.startLocation;
 	}
 	
-	public int getStartY() {
-		return this.startY;
-	}
-	
-	public int getEndX() {
-		return this.endY;
-	}
-	
-	public int getEndY() {
-		return this.endY;
+	public Location getEndLocation() {
+		return this.startLocation;
 	}
 	
 	public int getPiecesMadeVulnerable() {
