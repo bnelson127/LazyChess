@@ -3,7 +3,6 @@ package objects;
 public class Move {
 	private Location startLocation;
 	private Location endLocation;
-	private int endY;
 	private int piecesMadeVulnerable;
 	private boolean kingMadeVulnerable;
 	
@@ -19,7 +18,7 @@ public class Move {
 	}
 	
 	public Location getEndLocation() {
-		return this.startLocation;
+		return this.endLocation;
 	}
 	
 	public int getPiecesMadeVulnerable() {
