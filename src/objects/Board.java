@@ -97,7 +97,7 @@ public class Board {
 						if (threatenedPieces < lowestThreatCount) {
 							lowestThreatCount = threatenedPieces;
 						}
-						possibleMoves.add(new Move(start, end, threatenedPieces, kingThreatened));
+						possibleMoves.add(new Move(start, end, threatenedPieces));
 					}					
 				}
 			}

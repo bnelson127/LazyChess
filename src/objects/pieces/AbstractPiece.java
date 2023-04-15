@@ -13,10 +13,6 @@ public abstract class AbstractPiece {
 	protected boolean isEnemy = false;
 	protected Board board = null;
 	
-//	public AbstractPiece() {
-//		
-//	}
-	
 	public AbstractPiece(int x, int y, boolean isEnemy, Board board) {
 		this.x = x;
 		this.y = y;
@@ -46,7 +42,6 @@ public abstract class AbstractPiece {
 		return x >= 0 && y >= 0 && x < 8 && y < 8;
 	}
 	
-	abstract public ArrayList<Move> getPossibleMoves();
 	abstract public ArrayList<Location> getPossibleMoveLocations();
 	abstract protected boolean addLocationIfValid(int newX, int newY, ArrayList<Location> locations);
 }
