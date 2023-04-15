@@ -117,6 +117,52 @@ public class Board {
 		return leastThreateningMoves.get((int) (Math.random() * leastThreateningMoves.size()));
 	}
 	
+	@Override
+	public String toString() {
+		String stringBoard = "+---------------+\n|";
+		for (int i = 0; i < this.pieces.length; i++) {
+			char letter = ' ';
+			AbstractPiece piece = pieces[i];
+			if (piece != null) {
+				switch(piece.getClass().getSimpleName()) {
+					case "Bishop":
+						if (piece.getIsEnemy()) letter = PieceTypes.ENEMY_BISHOP;
+						else letter = PieceTypes.FRIENDLY_BISHOP;
+						break;
+					case "King":
+						if (piece.getIsEnemy()) letter = PieceTypes.ENEMY_KING;
+						else letter = PieceTypes.FRIENDLY_KING;
+						break;
+					case "Knight":
+						if (piece.getIsEnemy()) letter = PieceTypes.ENEMY_KNIGHT;
+						else letter = PieceTypes.FRIENDLY_KNIGHT;
+						break;
+					case "Pawn":
+						if (piece.getIsEnemy()) letter = PieceTypes.ENEMY_PAWN;
+						else letter = PieceTypes.FRIENDLY_PAWN;
+						break;
+					case "Queen":
+						if (piece.getIsEnemy()) letter = PieceTypes.ENEMY_QUEEN;
+						else letter = PieceTypes.FRIENDLY_QUEEN;
+						break;
+					case "Rook":
+						if (piece.getIsEnemy()) letter = PieceTypes.ENEMY_ROOK;
+						else letter = PieceTypes.FRIENDLY_ROOK;
+						break;
+					default:
+						letter = ' ';
+				}
+			}
+			
+			stringBoard += letter + "|";
+			if (i % 8 == 7 && i != 63) {
+				stringBoard += "\n|-+-+-+-+-+-+-+-|\n|";
+			}
+		}
+		stringBoard += "\n+---------------+";
+		return stringBoard;
+	}
+	
 	protected Board(AbstractPiece[] pieces) {
 		this.pieces = pieces;
 	}
