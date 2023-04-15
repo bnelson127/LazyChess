@@ -124,14 +124,28 @@ public class Board {
 	private Board getCopyOfBoardWithMovedPiece(int startIndex, Location end) {
 		AbstractPiece[] copiedPieces = new AbstractPiece[this.pieces.length];
 		for (int i = 0; i < this.pieces.length; i++) {
-			copiedPieces[i] = this.pieces[i];
+			AbstractPiece copiedPiece = this.pieces[i];
+			if (copiedPiece != null) {
+				copiedPiece = copiedPiece.makeCopy();
+			}
+			copiedPieces[i] = copiedPiece;
 		}
 		
 		int endIndex = end.getY() * 8 + end.getX();
 		copiedPieces[endIndex] = copiedPieces[startIndex];
 		copiedPieces[startIndex] = null;
 		
-		return new Board(copiedPieces);
+		Board copiedBoard = new Board(copiedPieces);
+		for (int i = 0; i < 8; i++) {
+			for (int j = 0; j < 8; j++) {
+				AbstractPiece copiedPiece = copiedBoard.getPiece(j, i);
+				if(copiedPiece != null) {
+					copiedPiece.setBoard(copiedBoard);
+				}
+			}
+		}
+		
+		return copiedBoard;
 	}
 	
 	private ArrayList<Location> getPossibleEnemyMoveLocations(Board board) {

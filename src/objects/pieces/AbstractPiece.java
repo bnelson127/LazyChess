@@ -31,6 +31,10 @@ public abstract class AbstractPiece {
 		return this.isEnemy;
 	}
 	
+	public void setBoard(Board board) {
+		this.board = board;
+	}
+	
 	@Override
 	public String toString() {
 		String enemy = this.isEnemy ? "Enemy" : "Friendly";
