@@ -23,10 +23,12 @@ public class main {
 			e.printStackTrace();
 		}
 
-		System.out.println(stringBoard);
 		Board board = new Board(stringBoard);
+		System.out.println(board);
+		
 		Move move = board.getRandomMove();
 		Location start = move.getStartLocation();
+		
 		AbstractPiece piece = board.getPiece(start.getX(), start.getY());
 		System.out.println("Move "+piece+" from " + move);
 	}
