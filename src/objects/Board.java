@@ -11,6 +11,7 @@ import objects.pieces.Rook;
 import java.util.ArrayList;
 
 import constants.PieceTypes;
+import constants.RowNames;
 
 public class Board {
 	
@@ -119,7 +120,8 @@ public class Board {
 	
 	@Override
 	public String toString() {
-		String stringBoard = "+---------------+\n|";
+		String stringBoard = "   1 2 3 4 5 6 7 8";
+		stringBoard += "\n  +---------------+\n"+RowNames.rowNames[0]+" |";
 		for (int i = 0; i < this.pieces.length; i++) {
 			char letter = ' ';
 			AbstractPiece piece = pieces[i];
@@ -156,10 +158,10 @@ public class Board {
 			
 			stringBoard += letter + "|";
 			if (i % 8 == 7 && i != 63) {
-				stringBoard += "\n|-+-+-+-+-+-+-+-|\n|";
+				stringBoard += "\n  |-+-+-+-+-+-+-+-|\n"+RowNames.rowNames[i/8 + 1]+" |";
 			}
 		}
-		stringBoard += "\n+---------------+";
+		stringBoard += "\n  +---------------+";
 		return stringBoard;
 	}
 	

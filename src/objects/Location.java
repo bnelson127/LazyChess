@@ -1,5 +1,7 @@
 package objects;
 
+import constants.RowNames;
+
 public class Location {
 	private int x;
 	private int y;
@@ -18,6 +20,6 @@ public class Location {
 	}
 	
 	public String toString() {
-		return "("+this.x+", "+this.y+")";
+		return RowNames.rowNames[this.y] + "" + (this.x + 1);
 	}
 }
