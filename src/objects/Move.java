@@ -28,4 +28,9 @@ public class Move {
 	public boolean getKingMadeVulnerable() {
 		return this.kingMadeVulnerable;
 	}
+	
+	@Override
+	public String toString() {
+		return startLocation+" to "+endLocation+" leaving "+piecesMadeVulnerable+" of your pieces vulnerable";
+	}
 }

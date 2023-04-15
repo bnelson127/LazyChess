@@ -36,6 +36,12 @@ public abstract class AbstractPiece {
 		return this.isEnemy;
 	}
 	
+	@Override
+	public String toString() {
+		String enemy = this.isEnemy ? "Enemy" : "Friendly";
+		return enemy + " " + this.getClass().getSimpleName();
+	}
+	
 	protected boolean isLocationOnBoard(int x, int y) {
 		return x >= 0 && y >= 0 && x < 8 && y < 8;
 	}
