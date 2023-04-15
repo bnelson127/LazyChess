@@ -7,12 +7,15 @@ import objects.pieces.Knight;
 import objects.pieces.Pawn;
 import objects.pieces.Queen;
 import objects.pieces.Rook;
+
+import java.util.ArrayList;
+
 import constants.PieceTypes;
 
 public class Board {
 	
-	private AbstractPiece[] board = new AbstractPiece[64];
-	
+	private AbstractPiece[] pieces = new AbstractPiece[64];
+
 	public Board(String board) {
 		for (int i = 0; i < 8; i++) {
 			for (int j = 0; j < 8; j++) {
@@ -59,7 +62,7 @@ public class Board {
 						currentPiece = null;
 					
 				}
-				this.board[i * 8 + j] = currentPiece;
+				this.pieces[i * 8 + j] = currentPiece;
 			}
 		}
 	}
@@ -68,6 +71,107 @@ public class Board {
 		if (x < 0 || x > 7 || y < 0 || y > 7) {
 			return null;
 		}
-		return this.board[y * 8 + x];
+		return this.pieces[y * 8 + x];
+	}
+	
+	public Move getRandomMove() {
+		ArrayList<Move> possibleMoves = new ArrayList<Move>();
+		int lowestThreatCount = 16;
+		
+		for (int i = 0; i < this.pieces.length; i++) {
+			
+			if (pieces[i] != null && !pieces[i].getIsEnemy()) {
+				
+				ArrayList<Location> moveLocations = pieces[i].getPossibleMoveLocations();
+				Location start = new Location(i % 8, i / 8);
+				
+				for (int j = 0; j < moveLocations.size(); j++) {
+					Location end = moveLocations.get(j);
+					
+					Board copiedBoard = this.getCopyOfBoardWithMovedPiece(i, end);
+					ArrayList<Location> possibleEnemyMoveLocations = this.getPossibleEnemyMoveLocations(copiedBoard);
+					
+					boolean kingThreatened = this.getIsFriendlyKingThreatened(copiedBoard, possibleEnemyMoveLocations);
+					if (!kingThreatened) {
+						int threatenedPieces = this.getNumberOfFriendlyPiecesThreatened(copiedBoard, possibleEnemyMoveLocations);
+						if (threatenedPieces < lowestThreatCount) {
+							lowestThreatCount = threatenedPieces;
+						}
+						possibleMoves.add(new Move(start, end, threatenedPieces, kingThreatened));
+					}					
+				}
+			}
+		}
+		
+		if (possibleMoves.size() == 0) {
+			return null;
+		}
+		
+		ArrayList<Move> leastThreateningMoves = new ArrayList<Move>();
+		for (int i = 0; i < possibleMoves.size(); i++) {
+			if(possibleMoves.get(i).getPiecesMadeVulnerable() == lowestThreatCount) {
+				leastThreateningMoves.add(possibleMoves.get(i));
+			}
+		}
+		
+		return leastThreateningMoves.get((int) (Math.random() * leastThreateningMoves.size()));
+	}
+	
+	protected Board(AbstractPiece[] pieces) {
+		this.pieces = pieces;
+	}
+	
+	private Board getCopyOfBoardWithMovedPiece(int startIndex, Location end) {
+		AbstractPiece[] copiedPieces = new AbstractPiece[this.pieces.length];
+		for (int i = 0; i < this.pieces.length; i++) {
+			copiedPieces[i] = this.pieces[i];
+		}
+		
+		int endIndex = end.getY() * 8 + end.getX();
+		copiedPieces[endIndex] = copiedPieces[startIndex];
+		copiedPieces[startIndex] = null;
+		
+		return new Board(copiedPieces);
+	}
+	
+	private ArrayList<Location> getPossibleEnemyMoveLocations(Board board) {
+		ArrayList<Location> moveLocations = new ArrayList<Location>();
+		for (int i = 0; i < 8; i++) {
+			for (int j = 0; j < 8; j++) {
+				AbstractPiece piece = board.getPiece(j, i);
+				if (piece != null && piece.getIsEnemy()) {
+					ArrayList<Location> possibleMoves = piece.getPossibleMoveLocations();
+					moveLocations.addAll(possibleMoves);
+				}
+			}
+		}
+		return moveLocations;
+	}
+	
+	private int getNumberOfFriendlyPiecesThreatened(Board board, ArrayList<Location> enemyMoveLocations) {
+		int numberOfPiecesThreatened = 0;
+		for (int k = 0; k < enemyMoveLocations.size(); k++) {
+			Location move = enemyMoveLocations.get(k);
+			
+			AbstractPiece pieceAtNewLocation = board.getPiece(move.getX(), move.getY());
+			if(pieceAtNewLocation != null && !pieceAtNewLocation.getIsEnemy()) {
+				numberOfPiecesThreatened++;
+			}
+		}
+		
+		return numberOfPiecesThreatened;
+	}
+	
+	private boolean getIsFriendlyKingThreatened(Board board, ArrayList<Location> enemyMoveLocations) {
+		for (int k = 0; k < enemyMoveLocations.size(); k++) {
+			Location move = enemyMoveLocations.get(k);
+			
+			AbstractPiece pieceAtNewLocation = board.getPiece(move.getX(), move.getY());
+			if(pieceAtNewLocation != null && pieceAtNewLocation.getClass() == King.class && !pieceAtNewLocation.getIsEnemy()) {
+				return true;
+			}
+		}
+		
+		return false;
 	}
 }
