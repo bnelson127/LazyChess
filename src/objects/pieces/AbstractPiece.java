@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import objects.Board;
 import objects.Location;
-import objects.Move;
 
 public abstract class AbstractPiece {
 	
@@ -42,6 +41,7 @@ public abstract class AbstractPiece {
 		return x >= 0 && y >= 0 && x < 8 && y < 8;
 	}
 	
+	abstract public AbstractPiece makeCopy();
 	abstract public ArrayList<Location> getPossibleMoveLocations();
 	abstract protected boolean addLocationIfValid(int newX, int newY, ArrayList<Location> locations);
 }

@@ -27,6 +27,11 @@ public class King extends AbstractPiece {
 	}
 	
 	@Override
+	public King makeCopy() {
+		return new King(this.x, this.y, this.isEnemy, this.board);
+	}
+	
+	@Override
 	protected boolean addLocationIfValid(int newX, int newY, ArrayList<Location> locations) {
 		if (this.isLocationOnBoard(newX, newY)) {
 			AbstractPiece pieceAtNewSpot = this.board.getPiece(newX, newY);

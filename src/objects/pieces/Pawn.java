@@ -24,6 +24,11 @@ public class Pawn extends AbstractPiece {
 	}
 	
 	@Override
+	public Pawn makeCopy() {
+		return new Pawn(this.x, this.y, this.isEnemy, this.board);
+	}
+	
+	@Override
 	protected boolean addLocationIfValid(int newX, int newY, ArrayList<Location> locations) {
 		if (this.isLocationOnBoard(newX, newY)) {
 			AbstractPiece pieceAtNewSpot = this.board.getPiece(newX, newY);

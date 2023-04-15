@@ -28,6 +28,11 @@ public class Knight extends AbstractPiece {
 	}
 	
 	@Override
+	public Knight makeCopy() {
+		return new Knight(this.x, this.y, this.isEnemy, this.board);
+	}
+	
+	@Override
 	protected boolean addLocationIfValid(int newX, int newY, ArrayList<Location> locations) {
 		if (this.isLocationOnBoard(newX, newY)) {
 			AbstractPiece pieceAtNewSpot = this.board.getPiece(newX, newY);
