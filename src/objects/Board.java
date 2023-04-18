@@ -203,7 +203,11 @@ public class Board {
 				AbstractPiece piece = board.getPiece(j, i);
 				if (piece != null && piece.getIsEnemy()) {
 					ArrayList<Location> possibleMoves = piece.getPossibleMoveLocations();
-					moveLocations.addAll(possibleMoves);
+					for (int k = 0; k < possibleMoves.size(); k++) {
+						if (!moveLocations.contains(possibleMoves.get(k))) {
+							moveLocations.add(possibleMoves.get(k));
+						}
+					}
 				}
 			}
 		}
@@ -212,9 +216,9 @@ public class Board {
 	
 	private int getNumberOfFriendlyPiecesThreatened(Board board, ArrayList<Location> enemyMoveLocations) {
 		int numberOfPiecesThreatened = 0;
+		ArrayList<Location> alreadyLookedAtLocations = new ArrayList<Location>();
 		for (int k = 0; k < enemyMoveLocations.size(); k++) {
 			Location move = enemyMoveLocations.get(k);
-			
 			AbstractPiece pieceAtNewLocation = board.getPiece(move.getX(), move.getY());
 			if(pieceAtNewLocation != null && !pieceAtNewLocation.getIsEnemy()) {
 				numberOfPiecesThreatened++;

@@ -22,4 +22,14 @@ public class Location {
 	public String toString() {
 		return RowNames.rowNames[this.y] + "" + (this.x + 1);
 	}
+	
+	@Override
+	public boolean equals(Object location) {
+		if (location.getClass() != this.getClass()) {
+			return false;
+		}
+		Location castLocation = (Location) location;
+		
+		return castLocation.getX() == this.x && castLocation.getY() == this.y;
+	}
 }
