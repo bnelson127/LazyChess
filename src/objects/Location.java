@@ -20,7 +20,7 @@ public class Location {
 	}
 	
 	public String toString() {
-		return RowNames.rowNames[this.y] + "" + (this.x + 1);
+		return RowNames.rowNames[7 - this.x] + "" + (this.y + 1);
 	}
 	
 	@Override
